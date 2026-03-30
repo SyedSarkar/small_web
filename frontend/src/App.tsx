@@ -10,7 +10,11 @@ function App() {
 
   const fetchItems = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/items');
+      const apiUrl = process.env.REACT_APP_API_URL 
+        ? `${process.env.REACT_APP_API_URL}/api/items`
+        : 'http://localhost:5000/api/items';
+      
+      const response = await fetch(apiUrl);
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
@@ -28,9 +32,13 @@ function App() {
 
   const handleItemSubmit = async (itemData: Omit<Item, '_id' | 'createdAt' | 'updatedAt'>) => {
     try {
-      const url = editingItem 
-        ? `http://localhost:5000/api/items/${editingItem._id}`
+      const apiUrl = process.env.REACT_APP_API_URL 
+        ? `${process.env.REACT_APP_API_URL}/api/items`
         : 'http://localhost:5000/api/items';
+      
+      const url = editingItem 
+        ? `${apiUrl}/${editingItem._id}`
+        : apiUrl;
       const method = editingItem ? 'PUT' : 'POST';
       
       const response = await fetch(url, {
@@ -56,7 +64,11 @@ function App() {
 
   const handleDelete = async (id: string) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/items/${id}`, {
+      const apiUrl = process.env.REACT_APP_API_URL 
+        ? `${process.env.REACT_APP_API_URL}/api/items/${id}`
+        : `http://localhost:5000/api/items/${id}`;
+      
+      const response = await fetch(apiUrl, {
         method: 'DELETE',
       });
       
