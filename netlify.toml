@@ -1,5 +1,6 @@
 [build]
-  publish = "frontend/build"
+  base = "frontend"
+  publish = "build"
   command = "npm run build"
 
 [build.environment]
@@ -7,7 +8,7 @@
 
 [[redirects]]
   from = "/api/*"
-  to = "https://your-backend-url.com/api/:splat"
+  to = "https://small-9tq0udnv9-kokimop513-3057s-projects.vercel.app/api/:splat"
   status = 200
 
 [[redirects]]
