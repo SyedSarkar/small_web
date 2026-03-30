@@ -10,7 +10,7 @@ function App() {
 
   const fetchItems = async () => {
     try {
-      const response = await fetch('/api/items');
+      const response = await fetch('https://your-backend-url.com/api/items');
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
@@ -29,8 +29,8 @@ function App() {
   const handleItemSubmit = async (itemData: Omit<Item, '_id' | 'createdAt' | 'updatedAt'>) => {
     try {
       const url = editingItem 
-        ? `/api/items/${editingItem._id}`
-        : '/api/items';
+        ? `https://your-backend-url.com/api/items/${editingItem._id}`
+        : 'https://your-backend-url.com/api/items';
       const method = editingItem ? 'PUT' : 'POST';
       
       const response = await fetch(url, {
@@ -56,7 +56,7 @@ function App() {
 
   const handleDelete = async (id: string) => {
     try {
-      const response = await fetch(`/api/items/${id}`, {
+      const response = await fetch(`https://your-backend-url.com/api/items/${id}`, {
         method: 'DELETE',
       });
       
