@@ -1,0 +1,19 @@
+{
+  "name": "small-web-fullstack",
+  "version": "1.0.0",
+  "description": "Simple full-stack website with React frontend and Node.js/Express backend",
+  "main": "server/index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd server && npm run dev",
+    "client": "cd client && npm start",
+    "build": "cd client && npm run build",
+    "start": "cd server && npm start"
+  },
+  "keywords": ["react", "node", "express", "mongodb", "fullstack"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
