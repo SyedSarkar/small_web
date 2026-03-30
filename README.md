@@ -57,36 +57,13 @@ The application will be available at:
 
 ## Deployment
 
-### Option 1: Netlify (Recommended - Static Frontend Only)
-⚠️ **Note**: Netlify can only host static files. For full functionality, you need to deploy the backend separately.
+### Frontend (Netlify)
+1. Run `npm run build` to create the production build
+2. Deploy the `frontend/build` folder to Netlify
 
-1. **Deploy Frontend to Netlify:**
-   - Go to [Netlify](https://netlify.com) and sign up
-   - Click "New site from Git" 
-   - Connect your GitHub repository
-   - Build settings:
-     - Build command: `npm run build`
-     - Publish directory: `backend/public`
-   - Add environment variable: `NODE_VERSION=18`
-
-2. **Deploy Backend to Render/Heroku:**
-   - Deploy the `backend` folder to [Render](https://render.com) or [Heroku](https://heroku.com)
-   - Set environment variable: `MONGODB_URI=mongodb+srv://sm_user:m4iJTpxzh5GgX2kI@smallwebcluster.grubjm7.mongodb.net/?appName=smallwebCluster`
-
-### Option 2: Render (Full Stack - Recommended)
-1. Go to [Render](https://render.com)
-2. Click "New" → "Web Service"
-3. Connect your GitHub repository
-4. Build settings:
-   - Build command: `npm install && cd frontend && npm install && npm run build && cd .. && cp -r frontend/build public`
-   - Start command: `npm start`
-   - Environment variables:
-     - `MONGODB_URI=mongodb+srv://sm_user:m4iJTpxzh5GgX2kI@smallwebcluster.grubjm7.mongodb.net/?appName=smallwebCluster`
-
-### Option 3: Vercel (Full Stack Alternative)
-1. Install Vercel CLI: `npm i -g vercel`
-2. Run: `vercel` in project root
-3. Configure as static site with serverless functions for API
+### Backend (Render/Heroku)
+1. Deploy the `backend` directory to your preferred hosting platform
+2. Set the MongoDB URI environment variable
 
 ## Features
 
