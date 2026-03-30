@@ -12,9 +12,20 @@ const PORT = process.env.PORT || 5000;
 // Middleware
 app.use(cors({
   origin: ['https://small-wee.netlify.app', 'http://localhost:3000'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
 }));
 app.use(express.json());
+
+// Handle pre-flight requests
+app.options('*', (req, res) => {
+  res.header('Access-Control-Allow-Origin', 'https://small-wee.netlify.app');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.header('Access-Control-Allow-Credentials', 'true');
+  res.sendStatus(200);
+});
 
 // MongoDB Connection
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/smallweb', {
