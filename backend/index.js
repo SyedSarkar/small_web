@@ -61,8 +61,13 @@ app.use('/api/items', itemRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({ message: 'Something went wrong!' });
+  console.error('Error details:', err);
+  console.error('Stack trace:', err.stack);
+  res.status(500).json({ 
+    message: 'Server error', 
+    error: err.message,
+    stack: process.env.NODE_ENV === 'development' ? err.stack : undefined
+  });
 });
 
 app.listen(PORT, () => {

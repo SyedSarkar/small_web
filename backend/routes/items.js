@@ -5,10 +5,13 @@ const Item = require('../models/Item');
 // GET all items
 router.get('/', async (req, res) => {
   try {
+    console.log('Fetching items from database...');
     const items = await Item.find().sort({ createdAt: -1 });
+    console.log(`Found ${items.length} items`);
     res.json(items);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    console.error('Error fetching items:', error);
+    res.status(500).json({ message: error.message, stack: error.stack });
   }
 });
 
