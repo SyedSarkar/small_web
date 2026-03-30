@@ -10,11 +10,15 @@ function App() {
 
   const fetchItems = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/items');
+      const response = await fetch('/api/items');
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
       const data = await response.json();
-      setItems(data);
+      setItems(Array.isArray(data) ? data : []);
     } catch (error) {
       console.error('Error fetching items:', error);
+      setItems([]); // Set empty array on error to prevent map errors
     }
   };
 
@@ -25,8 +29,8 @@ function App() {
   const handleItemSubmit = async (itemData: Omit<Item, '_id' | 'createdAt' | 'updatedAt'>) => {
     try {
       const url = editingItem 
-        ? `http://localhost:5000/api/items/${editingItem._id}`
-        : 'http://localhost:5000/api/items';
+        ? `/api/items/${editingItem._id}`
+        : '/api/items';
       const method = editingItem ? 'PUT' : 'POST';
       
       const response = await fetch(url, {
@@ -52,7 +56,7 @@ function App() {
 
   const handleDelete = async (id: string) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/items/${id}`, {
+      const response = await fetch(`/api/items/${id}`, {
         method: 'DELETE',
       });
       
