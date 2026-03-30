@@ -13,8 +13,8 @@ A simple full-stack website built with React.js frontend and Node.js/Express bac
 
 ```
 small_web/
-├── client/          # React frontend
-├── server/          # Node.js backend
+├── frontend/        # React frontend
+├── backend/         # Node.js backend
 ├── package.json     # Root package file
 └── README.md        # This file
 ```
@@ -36,11 +36,11 @@ cd small_web
 2. Install dependencies:
 ```bash
 npm install
-cd client && npm install
-cd ../server && npm install
+cd frontend && npm install
+cd ../backend && npm install
 ```
 
-3. Set up environment variables in `server/.env`:
+3. Set up environment variables in `backend/.env`:
 ```
 MONGODB_URI=mongodb+srv://sm_user:your_password@smallwebcluster.grubjm7.mongodb.net/?appName=smallwebCluster
 PORT=5000
@@ -59,10 +59,10 @@ The application will be available at:
 
 ### Frontend (Netlify)
 1. Run `npm run build` to create the production build
-2. Deploy the `client/build` folder to Netlify
+2. Deploy the `frontend/build` folder to Netlify
 
 ### Backend (Render/Heroku)
-1. Deploy the `server` directory to your preferred hosting platform
+1. Deploy the `backend` directory to your preferred hosting platform
 2. Set the MongoDB URI environment variable
 
 ## Features
