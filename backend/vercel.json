@@ -15,5 +15,8 @@
       "src": "/(.*)",
       "dest": "/index.js"
     }
-  ]
+  ],
+  "env": {
+    "ALLOWED_ORIGINS": "https://small-wee.netlify.app,http://localhost:3000"
+  }
 }
